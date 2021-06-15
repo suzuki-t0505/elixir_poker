@@ -1,0 +1,28 @@
+<style>
+img.card{
+  width: 100px;
+}
+</style>
+
+<%
+{mydeck, enemydeck} = Cards.main
+mypair = Cards.chacksuits(mydeck)
+enemypair = Cards.chacksuits(enemydeck)
+%>
+
+<p>mydeck</p>
+<%= for deck <- mydeck do %>
+  <img class="card" src="<%= Routes.static_path(@conn, "/images/#{deck}.png") %>" alt="<%= deck %>">
+<% end %>
+<p><%= Cards.pairviw(mypair) %></p>
+
+<hr>
+
+<p>enemydeck</p>
+<%= for deck <- enemydeck do %>
+  <img class="card" src="<%= Routes.static_path(@conn, "/images/#{deck}.png") %>" alt="<%= deck %>">
+<% end %>
+<p><%= Cards.pairviw(enemypair) %></p>
+
+<br>
+<h3><%= Cards.winorlose(mypair, enemypair) %></h3>
